@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>群晖</title>
+      <link href="/posts/c3fd198e/"/>
+      <url>/posts/c3fd198e/</url>
+      
+        <content type="html"><![CDATA[<h1 id="群晖"><a href="#群晖" class="headerlink" title="群晖"></a>群晖</h1><p><a href="https://cn-qz1-8iwzyp2h.frp.cool:13131/">群晖地址</a></p><p>账号:testuser<br>密码:Abc123456</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 资源共享 </tag>
+            
+            <tag> 群晖 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/posts/4a17b156/"/>
       <url>/posts/4a17b156/</url>
@@ -21,7 +42,7 @@
       <link href="/posts/79f987da/"/>
       <url>/posts/79f987da/</url>
       
-        <content type="html"><![CDATA[<h1 id="Emby"><a href="#Emby" class="headerlink" title="Emby"></a>Emby</h1><p><a href="http://web-us1-s92ot030.frp.cool:10101/">Emby地址</a><br>账号: testuser<br>密码: Abc123456</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="Emby"><a href="#Emby" class="headerlink" title="Emby"></a>Emby</h1><p><a href="http://cn-qz1-8iwzyp2h.frp.cool:14141/">Emby地址</a>(国内节点)<br><a href="http://web-us1-s92ot030.frp.cool:10101/">Emby地址</a>(国外节点随时下线)<br>账号: testuser<br>密码: Abc123456</p>]]></content>
       
       
       
