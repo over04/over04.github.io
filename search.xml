@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title>python装饰器学习</title>
+      <link href="/posts/dbe28a50/"/>
+      <url>/posts/dbe28a50/</url>
+      
+        <content type="html"><![CDATA[<h1 id="装饰器是什么"><a href="#装饰器是什么" class="headerlink" title="装饰器是什么"></a>装饰器是什么</h1><p>装饰器(Decorators)是 Python 的一个重要部分。简单地说：他们是修改其他函数的功能的函数。他们有助于让我们的代码更简短，也更Pythonic（Python范儿）。</p><h1 id="基本使用方法"><a href="#基本使用方法" class="headerlink" title="基本使用方法"></a>基本使用方法</h1><h2 id="装饰函数"><a href="#装饰函数" class="headerlink" title="装饰函数"></a>装饰函数</h2><h3 id="不传入参数"><a href="#不传入参数" class="headerlink" title="不传入参数"></a>不传入参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def 第一层函数(func):</span><br><span class="line">    def 第二层函数():</span><br><span class="line">        func()</span><br><span class="line">    return 第二次层函数</span><br></pre></td></tr></table></figure><p>实际上就是将“被装饰”的函数传入到第一层函数中(“即装饰”函数),再将“被装饰”的函数再次包装到第二层函数里,再返回,最后调用的是第二层函数</p><p>下面是几个例子</p><p>第一个:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def start_time(func):</span><br><span class="line">    print(time.time())</span><br><span class="line">    return func</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@start_time</span><br><span class="line">def test():</span><br><span class="line">    print(&#x27;start&#x27;)</span><br><span class="line"></span><br><span class="line">输出:</span><br><span class="line">1663083015.46601</span><br><span class="line">start</span><br></pre></td></tr></table></figure><p>第二个:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">def run_time(func):</span><br><span class="line">    def _():</span><br><span class="line">        print(&#x27;start&#x27;)</span><br><span class="line">        start_time = time.time()</span><br><span class="line">        func()</span><br><span class="line">        print(&#x27;stop&#x27;)</span><br><span class="line">        return time.time() - start_time</span><br><span class="line"></span><br><span class="line">    return _</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@run_time</span><br><span class="line">def test():</span><br><span class="line">    time.sleep(2)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(test())</span><br><span class="line">输出:</span><br><span class="line">start</span><br><span class="line">stop</span><br><span class="line">2.0051281452178955</span><br></pre></td></tr></table></figure><h3 id="传入参数"><a href="#传入参数" class="headerlink" title="传入参数"></a>传入参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def 第一层函数(args):</span><br><span class="line">    def 第二层函数(func):</span><br><span class="line">        def 第三层函数():</span><br><span class="line">            func()</span><br><span class="line">        return 第三次层函数</span><br><span class="line">    return 第二次层函数</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> 编程 </tag>
+            
+            <tag> 笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>群晖</title>
       <link href="/posts/c3fd198e/"/>
       <url>/posts/c3fd198e/</url>
