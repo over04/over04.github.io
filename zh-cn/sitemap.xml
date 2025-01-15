@@ -2,21 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://over04.github.io/post/1.%E5%89%8D%E8%A8%80qa/</loc>
-  </url><url>
-    <loc>https://over04.github.io/categories/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://over04.github.io/en/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://over04.github.io/categories/"
-                />
+    <loc>https://over04.github.io/tags/java/</loc>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://over04.github.io/</loc>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -29,8 +19,13 @@
                 />
   </url><url>
     <loc>https://over04.github.io/post/</loc>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://over04.github.io/tags/springboot/</loc>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://over04.github.io/tags/</loc>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -40,6 +35,23 @@
                 rel="alternate"
                 hreflang="zh-cn"
                 href="https://over04.github.io/tags/"
+                />
+  </url><url>
+    <loc>https://over04.github.io/post/1.%E4%BB%8Eapplication.properties%E4%B8%AD%E4%BD%BF%E7%94%A8@value%E7%9A%84%E8%B8%A9%E5%9D%91/</loc>
+    <lastmod>2024-01-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://over04.github.io/post/1.%E5%89%8D%E8%A8%80qa/</loc>
+  </url><url>
+    <loc>https://over04.github.io/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://over04.github.io/en/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://over04.github.io/categories/"
                 />
   </url>
 </urlset>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Over04的站点</title>
-        <link>https://over04.github.io/</link>
-        <description>Recent content on Over04的站点</description>
+        <title>Java on Over04的站点</title>
+        <link>https://over04.github.io/tags/java/</link>
+        <description>Recent content in Java on Over04的站点</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Fri, 05 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://over04.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 05 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://over04.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>从application.properties中使用@Value读取数据为null</title>
         <link>https://over04.github.io/post/1.%E4%BB%8Eapplication.properties%E4%B8%AD%E4%BD%BF%E7%94%A8@value%E7%9A%84%E8%B8%A9%E5%9D%91/</link>
         <pubDate>Fri, 05 Jan 2024 00:00:00 +0000</pubDate>
@@ -26,42 +26,6 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-        </item>
-        <item>
-        <title></title>
-        <link>https://over04.github.io/post/1.%E5%89%8D%E8%A8%80qa/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://over04.github.io/post/1.%E5%89%8D%E8%A8%80qa/</guid>
-        <description>&lt;p&gt;注意，本笔记使用的Xcode版本是Version 16.1 (16B40)，不同版本的Xcode有差别。本份笔记不会完整的教你某种语法，只会提供一些思路、踩坑点，请结合搜索引擎食用😊&lt;/p&gt;
-&lt;h3 id=&#34;1这份笔记适合什么阶段读&#34;&gt;1.这份笔记适合什么阶段读？
-&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;最最基础的SwiftUI视图会写了&lt;/li&gt;
-&lt;li&gt;想要写出格式比较规范的代码&lt;/li&gt;
-&lt;li&gt;Xcode默认的配置太难受了&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;2阅读顺序&#34;&gt;2.阅读顺序
-&lt;/h3&gt;&lt;p&gt;没什么阅读顺序，笔记不分前后，哪部分遇到问题就看哪部分。但是建议先读一下[[4.如何设计整个项目的结构|4.如何设计整个项目的结构]]。&lt;/p&gt;
-&lt;h3 id=&#34;3如何写swiftui项目&#34;&gt;3.如何写SwiftUI项目？
-&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;开一个Learning项目，将SwiftUI中的一些语法学会&lt;/li&gt;
-&lt;li&gt;给你的项目搭建好最基础的框架(详情见[[4.如何设计整个项目的结构|4.如何设计整个项目的结构]])&lt;/li&gt;
-&lt;li&gt;开始你的Coding吧&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;4我遇到了一个bug死活修复不了&#34;&gt;4.我遇到了一个bug死活修复不了
-&lt;/h3&gt;&lt;p&gt;重启电脑，你会有惊喜的(重启Xcode解决不了)😊&lt;/p&gt;
-&lt;h3 id=&#34;5xcode有汉化吗&#34;&gt;5.Xcode有汉化吗
-&lt;/h3&gt;&lt;p&gt;抱歉没有，当然你可以试试Vscode(小心遇到坑)&lt;/p&gt;
-&lt;h3 id=&#34;6我上哪里找资料&#34;&gt;6.我上哪里找资料
-&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;GPT，但是有时效性(比如网络操作GPT更倾向于使用第三方库)&lt;/li&gt;
-&lt;li&gt;谷歌，必须使用英文&lt;/li&gt;
-&lt;li&gt;其他分享平台例如稀土掘金、博客园、个人博客、Github&lt;/li&gt;
-&lt;li&gt;避雷CSDN😡&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;7可以装第三方插件吗&#34;&gt;7.可以装第三方插件吗
-&lt;/h3&gt;&lt;p&gt;当然可以，但是我试过一次，项目当场报废，也不知道怎么修，只能全复制一遍了😭&lt;/p&gt;
-</description>
         </item>
         
     </channel>
