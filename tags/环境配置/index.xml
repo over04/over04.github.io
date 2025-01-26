@@ -6,17 +6,25 @@
         <description>Recent content in 环境配置 on Over04的站点</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 20 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://over04.github.io/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.xml" rel="self" type="application/rss+xml" /><item>
+        <copyright>Over04</copyright>
+        <lastBuildDate>Mon, 20 Jan 2025 20:07:50 +0800</lastBuildDate><atom:link href="https://over04.github.io/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Flutter环境配置问题</title>
-        <link>https://over04.github.io/post/1.%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/</link>
+        <link>https://over04.github.io/p/flutter%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/</link>
         <pubDate>Mon, 20 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://over04.github.io/post/1.%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/</guid>
+        <guid>https://over04.github.io/p/flutter%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/</guid>
         <description>&lt;h1 id=&#34;1网络问题&#34;&gt;1.网络问题
 &lt;/h1&gt;&lt;p&gt;在mac中如果设置了&lt;code&gt;http_proxy&lt;/code&gt;环境变量，那么flutter默认会将本地路径也代理进去，根据&lt;code&gt;flutter doctor -v&lt;/code&gt;配置即可。重要的是配置好后==要重启==！！！&lt;/p&gt;
 &lt;h1 id=&#34;2无法打开iproxy因为无法验证开发者&#34;&gt;2.无法打开“iproxy”，因为无法验证开发者
-&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo xattr -d com.apple.quarantine /Users/xxx/flutter/bin/cache/artifacts/usbmuxd/iproxy &lt;span style=&#34;color:#75715e&#34;&gt;# 换成你的flutter路径&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo xattr -d com.apple.quarantine /Users/xxx/flutter/bin/cache/artifacts/usbmuxd/iproxy &lt;span class=&#34;c1&#34;&gt;# 换成你的flutter路径&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
         </item>
         
     </channel>

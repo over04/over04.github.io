@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="1.vue-router 最基本的用法就是自定义router然后注入，下面是几个遇到的问题\n1.createRouter中history三个模式怎么选 根据vue-router的官网的介绍，开发过程中使用createWebHashHistory比较好，因为可以直接在地址栏中访问\n2.如何嵌套页面 在App.vue中，我们通过使用以下方法使用路由页面。\n1 &lt;RouterView&gt; &lt;/RouterView&gt; 嵌套页面也类似\n1 2 3 4 5 6 7 8 9 10 11 12 { path: &#39;...&#39;, name: &#34;navigation&#34;, component: NavigationView, children: [ { path: &#34;&#34;, name: &#34;controller&#34;, component: () =&gt; ControllerView, }, ] } 之后在NavigationView中需要嵌套的地方加上&lt;RouterView&gt;即可\n3.获取路由数据并操作路由 见下方代码\n1 2 3 4 import {useRoute, useRouter} from &#34;vue-router&#34;; const route = useRoute() const router = useRouter() ">
+<title>多次入坑Vue3后的踩坑日志</title>
+
+<link rel='canonical' href='https://over04.github.io/p/%E5%A4%9A%E6%AC%A1%E5%85%A5%E5%9D%91vue3%E5%90%8E%E7%9A%84%E8%B8%A9%E5%9D%91%E6%97%A5%E5%BF%97/'>
+
+<link rel="stylesheet" href="/scss/style.min.e0a2b8c68aed3c0e5dad2358821ceef02e679500c0a16d4ce34b808e524d523f.css"><meta property='og:title' content="多次入坑Vue3后的踩坑日志">
+<meta property='og:description' content="1.vue-router 最基本的用法就是自定义router然后注入，下面是几个遇到的问题\n1.createRouter中history三个模式怎么选 根据vue-router的官网的介绍，开发过程中使用createWebHashHistory比较好，因为可以直接在地址栏中访问\n2.如何嵌套页面 在App.vue中，我们通过使用以下方法使用路由页面。\n1 &lt;RouterView&gt; &lt;/RouterView&gt; 嵌套页面也类似\n1 2 3 4 5 6 7 8 9 10 11 12 { path: &#39;...&#39;, name: &#34;navigation&#34;, component: NavigationView, children: [ { path: &#34;&#34;, name: &#34;controller&#34;, component: () =&gt; ControllerView, }, ] } 之后在NavigationView中需要嵌套的地方加上&lt;RouterView&gt;即可\n3.获取路由数据并操作路由 见下方代码\n1 2 3 4 import {useRoute, useRouter} from &#34;vue-router&#34;; const route = useRoute() const router = useRouter() ">
+<meta property='og:url' content='https://over04.github.io/p/%E5%A4%9A%E6%AC%A1%E5%85%A5%E5%9D%91vue3%E5%90%8E%E7%9A%84%E8%B8%A9%E5%9D%91%E6%97%A5%E5%BF%97/'>
+<meta property='og:site_name' content='Over04的站点'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='vue3' /><meta property='article:tag' content='vue-router' /><meta property='article:published_time' content='2025-01-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-01-16T22:43:11&#43;08:00'/>
+<meta name="twitter:title" content="多次入坑Vue3后的踩坑日志">
+<meta name="twitter:description" content="1.vue-router 最基本的用法就是自定义router然后注入，下面是几个遇到的问题\n1.createRouter中history三个模式怎么选 根据vue-router的官网的介绍，开发过程中使用createWebHashHistory比较好，因为可以直接在地址栏中访问\n2.如何嵌套页面 在App.vue中，我们通过使用以下方法使用路由页面。\n1 &lt;RouterView&gt; &lt;/RouterView&gt; 嵌套页面也类似\n1 2 3 4 5 6 7 8 9 10 11 12 { path: &#39;...&#39;, name: &#34;navigation&#34;, component: NavigationView, children: [ { path: &#34;&#34;, name: &#34;controller&#34;, component: () =&gt; ControllerView, }, ] } 之后在NavigationView中需要嵌套的地方加上&lt;RouterView&gt;即可\n3.获取路由数据并操作路由 见下方代码\n1 2 3 4 import {useRoute, useRouter} from &#34;vue-router&#34;; const route = useRoute() const router = useRouter() ">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_ed9b0bcb84b01345.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Over04的站点</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1createrouter中history三个模式怎么选">1.createRouter中history三个模式怎么选</a></li>
+    <li><a href="#2如何嵌套页面">2.如何嵌套页面</a></li>
+    <li><a href="#3获取路由数据并操作路由">3.获取路由数据并操作路由</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E5%A4%9A%E6%AC%A1%E5%85%A5%E5%9D%91vue3%E5%90%8E%E7%9A%84%E8%B8%A9%E5%9D%91%E6%97%A5%E5%BF%97/">多次入坑Vue3后的踩坑日志</a>
+        </h2>
+
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time"><div class="article-lastmod">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+            <time>
+                最近更新：2025, Jan 16, 22:43
+            </time>
+        </div>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025, Jan 16</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 1 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="1vue-router">1.vue-router
+</h1><p>最基本的用法就是自定义router然后注入，下面是几个遇到的问题</p>
+<h2 id="1createrouter中history三个模式怎么选">1.createRouter中history三个模式怎么选
+</h2><p>根据vue-router的<a class="link" href="https://router.vuejs.org/zh/guide/essentials/history-mode.html"  target="_blank" rel="noopener"
+    >官网的介绍</a>，开发过程中使用<code>createWebHashHistory</code>比较好，因为可以直接在地址栏中访问</p>
+<h2 id="2如何嵌套页面">2.如何嵌套页面
+</h2><p>在App.vue中，我们通过使用以下方法使用路由页面。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">RouterView</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">RouterView</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>嵌套页面也类似</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;...&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;navigation&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">component</span><span class="o">:</span> <span class="nx">NavigationView</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">children</span><span class="o">:</span> <span class="p">[</span>  
+</span></span><span class="line"><span class="cl">	    <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">	        <span class="nx">path</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">	        <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;controller&#34;</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">	        <span class="nx">component</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">ControllerView</span><span class="p">,</span>  
+</span></span><span class="line"><span class="cl">	    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>之后在NavigationView中需要嵌套的地方加上<code>&lt;RouterView&gt;</code>即可</p>
+<h2 id="3获取路由数据并操作路由">3.获取路由数据并操作路由
+</h2><p>见下方代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span><span class="nx">useRoute</span><span class="p">,</span> <span class="nx">useRouter</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;vue-router&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">route</span> <span class="o">=</span> <span class="nx">useRoute</span><span class="p">()</span>  
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">useRouter</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/vue3/">Vue3</a>
+        
+            <a href="/tags/vue-router/">Vue-Router</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2025, Jan 16, 22:43
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy;
+        
+            2020 -
+        
+        2025 Over04
+    </section>
+
+    <section class="powerby">
+        
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<div id="particles-js"></div>
+
+<script src=https://over04.github.io/js/particles.min.js></script>
+<script>
+    particlesJS.load('particles-js', "https://over04.github.io/js/particlesjs-config.json", function() {
+        console.log('particles.js loaded - callback');
+    });
+</script>
+
+<style>
+    #particles-js {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: -1;
+    }
+</style>
+
+<style>
+    .highlight {
+         
+        max-height: 400px;
+        overflow: hidden;
+    }
+
+    .code-show {
+        max-height: none !important;
+    }
+
+    .code-more-box {
+        width: 100%;
+        padding-top: 78px;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#fff));
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+    }
+
+    .code-more-btn {
+        display: block;
+        margin: auto;
+        width: 44px;
+        height: 22px;
+        background: #f0f0f5;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        padding-top: 6px;
+        cursor: pointer;
+    }
+
+    .code-more-img {
+        cursor: pointer !important;
+        display: block;
+        margin: auto;
+        width: 22px;
+        height: 16px;
+    }
+</style>
+
+<script>
+    function initCodeMoreBox() {
+        let codeBlocks = document.querySelectorAll(".highlight");
+        if (!codeBlocks) {
+            return;
+        }
+        codeBlocks.forEach(codeBlock => {
+            
+            if (codeBlock.scrollHeight <= codeBlock.clientHeight) {
+                return;
+            }
+            
+            
+            let codeMoreBox = document.createElement('div');
+            codeMoreBox.classList.add('code-more-box');
+            
+            let codeMoreBtn = document.createElement('span');
+            codeMoreBtn.classList.add('code-more-btn');
+            codeMoreBtn.addEventListener('click', () => {
+                codeBlock.classList.add('code-show');
+                codeMoreBox.style.display = 'none';
+            })
+            
+            let img = document.createElement('img');
+            img.classList.add('code-more-img');
+            img.src = "https://over04.github.io/img/codeMore.png"
+            
+            codeMoreBtn.appendChild(img);
+            codeMoreBox.appendChild(codeMoreBtn);
+            codeBlock.appendChild(codeMoreBox)
+        })
+    }
+
+    initCodeMoreBox();
+</script>
+
+
+<style>
+    #TableOfContents > ul, ol {
+        ul, ol {
+            display: none;
+        }
+        .open {
+            display: block;
+        }
+    }
+</style>
+
+
+<script>
+    function initTocHide() {
+        
+        let toc = document.querySelector(".widget--toc");
+        if (!toc) {
+            return;
+        }
+        
+        window.addEventListener('scroll', function() {
+            
+            let openUl = document.querySelectorAll(".open");
+            if (openUl.length > 0) {
+                openUl.forEach((ul) => {
+                    ul.classList.remove("open")
+                })
+            }
+            
+            let currentLi = document.querySelector(".active-class");
+            if (!currentLi) {
+                return
+            }
+            
+            if (currentLi.children.length > 1) {
+                currentLi.children[1].classList.add("open")
+            }
+            
+            let ul = currentLi.parentElement;
+            do {
+                ul.classList.add("open");
+                ul = ul.parentElement.parentElement
+            } while (ul !== undefined && (ul.localName === 'ul' || ul.localName === 'ol'))
+        });
+    }
+    initTocHide()
+</script>
+
+    </body>
+</html>
