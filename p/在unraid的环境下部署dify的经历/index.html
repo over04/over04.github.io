@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Over04の博客，不保证正确、不保证更新、不保证严谨、不保证。。。\n">
-<title>关于</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言：本篇文章只讲述部署的经历，并没有找到问题的所在\ndocker compose不走软路由代理 单独使用docker pull，走软路由代理；使用docker compose并创建了一个新的docker网后就不走代理（非host的docker容器也是一样，可能要进行设置）\ndify-api启动时报错 dify-api启动时报错，读取数据库出错，继续追踪，发现redis启动失败并一直重启（不知道是触发什么bug了），删除容器、本地数据后均无效（数据挂载到flash的原因？），重新下载镜像后成功启动\n环境变量配置 最主要修改的是以下几项配置\n1 2 SECRET_KEY # 密钥必须要改的 EXPOSE_NGINX_PORT # 对外暴露的端口EXPOSE_NGINX_SSL_PORT同理 偶遇神秘问题，拼尽全力无法战胜 情景、解决思路回顾 内网下打开网站，显示空白，手动进入/install页面 注册完毕，直接跳转到/apps页面 页面无法显示，使用F12发现401报错 使用无痕模式、Edge-dev登录没有出现问题 对比请求发现登录成功时没有设置cookie 失败的浏览器在删除cookie后功能正常 cookie是哪来的 考虑到内网端口曾经被使用过，所以可能有残留着的cookie。但是在同样情况下，使用内网穿透和虚拟局域网同样产生了cookie，导致登录不了。因此该可能排除。也有可能是nginx启动不充分产生的问题（不知道，我猜的）\n总结 真是酣畅淋漓的赤石啊！ 感觉像是侦探查案，凶手没找到，人质自己跑回来了&hellip;&hellip; 总之，希腊奶~\n">
+<title>在Unraid的环境下部署Dify的经历</title>
 
-<link rel='canonical' href='https://over04.github.io/%E5%85%B3%E4%BA%8E/'>
+<link rel='canonical' href='https://over04.github.io/p/%E5%9C%A8unraid%E7%9A%84%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2dify%E7%9A%84%E7%BB%8F%E5%8E%86/'>
 
-<link rel="stylesheet" href="/scss/style.min.e0a2b8c68aed3c0e5dad2358821ceef02e679500c0a16d4ce34b808e524d523f.css"><meta property='og:title' content="关于">
-<meta property='og:description' content="Over04の博客，不保证正确、不保证更新、不保证严谨、不保证。。。\n">
-<meta property='og:url' content='https://over04.github.io/%E5%85%B3%E4%BA%8E/'>
+<link rel="stylesheet" href="/scss/style.min.e0a2b8c68aed3c0e5dad2358821ceef02e679500c0a16d4ce34b808e524d523f.css"><meta property='og:title' content="在Unraid的环境下部署Dify的经历">
+<meta property='og:description' content="前言：本篇文章只讲述部署的经历，并没有找到问题的所在\ndocker compose不走软路由代理 单独使用docker pull，走软路由代理；使用docker compose并创建了一个新的docker网后就不走代理（非host的docker容器也是一样，可能要进行设置）\ndify-api启动时报错 dify-api启动时报错，读取数据库出错，继续追踪，发现redis启动失败并一直重启（不知道是触发什么bug了），删除容器、本地数据后均无效（数据挂载到flash的原因？），重新下载镜像后成功启动\n环境变量配置 最主要修改的是以下几项配置\n1 2 SECRET_KEY # 密钥必须要改的 EXPOSE_NGINX_PORT # 对外暴露的端口EXPOSE_NGINX_SSL_PORT同理 偶遇神秘问题，拼尽全力无法战胜 情景、解决思路回顾 内网下打开网站，显示空白，手动进入/install页面 注册完毕，直接跳转到/apps页面 页面无法显示，使用F12发现401报错 使用无痕模式、Edge-dev登录没有出现问题 对比请求发现登录成功时没有设置cookie 失败的浏览器在删除cookie后功能正常 cookie是哪来的 考虑到内网端口曾经被使用过，所以可能有残留着的cookie。但是在同样情况下，使用内网穿透和虚拟局域网同样产生了cookie，导致登录不了。因此该可能排除。也有可能是nginx启动不充分产生的问题（不知道，我猜的）\n总结 真是酣畅淋漓的赤石啊！ 感觉像是侦探查案，凶手没找到，人质自己跑回来了&hellip;&hellip; 总之，希腊奶~\n">
+<meta property='og:url' content='https://over04.github.io/p/%E5%9C%A8unraid%E7%9A%84%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2dify%E7%9A%84%E7%BB%8F%E5%8E%86/'>
 <meta property='og:site_name' content='Over04的站点'>
-<meta property='og:type' content='article'><meta property='article:section' content='Page' /><meta property='article:modified_time' content='2025-01-26T23:00:55&#43;08:00'/>
-<meta name="twitter:title" content="关于">
-<meta name="twitter:description" content="Over04の博客，不保证正确、不保证更新、不保证严谨、不保证。。。\n">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='dify' /><meta property='article:tag' content='unraid' /><meta property='article:modified_time' content='2025-03-09T00:11:46&#43;08:00'/>
+<meta name="twitter:title" content="在Unraid的环境下部署Dify的经历">
+<meta name="twitter:description" content="前言：本篇文章只讲述部署的经历，并没有找到问题的所在\ndocker compose不走软路由代理 单独使用docker pull，走软路由代理；使用docker compose并创建了一个新的docker网后就不走代理（非host的docker容器也是一样，可能要进行设置）\ndify-api启动时报错 dify-api启动时报错，读取数据库出错，继续追踪，发现redis启动失败并一直重启（不知道是触发什么bug了），删除容器、本地数据后均无效（数据挂载到flash的原因？），重新下载镜像后成功启动\n环境变量配置 最主要修改的是以下几项配置\n1 2 SECRET_KEY # 密钥必须要改的 EXPOSE_NGINX_PORT # 对外暴露的端口EXPOSE_NGINX_SSL_PORT同理 偶遇神秘问题，拼尽全力无法战胜 情景、解决思路回顾 内网下打开网站，显示空白，手动进入/install页面 注册完毕，直接跳转到/apps页面 页面无法显示，使用F12发现401报错 使用无痕模式、Edge-dev登录没有出现问题 对比请求发现登录成功时没有设置cookie 失败的浏览器在删除cookie后功能正常 cookie是哪来的 考虑到内网端口曾经被使用过，所以可能有残留着的cookie。但是在同样情况下，使用内网穿透和虚拟局域网同样产生了cookie，导致登录不了。因此该可能排除。也有可能是nginx启动不充分产生的问题（不知道，我猜的）\n总结 真是酣畅淋漓的赤石啊！ 感觉像是侦探查案，凶手没找到，人质自己跑回来了&hellip;&hellip; 总之，希腊奶~\n">
     </head>
     <body class="
     article-page
@@ -94,7 +94,7 @@
         </li>
         
         
-        <li  class='current' >
+        <li >
             <a href='/%E5%85%B3%E4%BA%8E/' >
                 
                 
@@ -180,7 +180,40 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#情景解决思路回顾">情景、解决思路回顾</a></li>
+    <li><a href="#cookie是哪来的">cookie是哪来的</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="main-article">
@@ -191,7 +224,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/%E5%85%B3%E4%BA%8E/">关于</a>
+            <a href="/p/%E5%9C%A8unraid%E7%9A%84%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2dify%E7%9A%84%E7%BB%8F%E5%8E%86/">在Unraid的环境下部署Dify的经历</a>
         </h2>
 
         
@@ -211,7 +244,7 @@
 
 
             <time>
-                最近更新：2025, Jan 26, 23:00
+                最近更新：2025, Mar 09, 00:11
             </time>
         </div>
 
@@ -241,224 +274,53 @@
     <section class="article-content">
     
     
-    <p>Over04の博客，不保证正确、不保证更新、不保证严谨、不保证。。。</p>
-<div id="heatmap" style="
-  max-width: 1900px;
-  height: 180px;
-  padding: 2px;
-  text-align: center;
-  "
-></div>
-<script src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js"></script>
-<script type="text/javascript">
-    var chartDom = document.getElementById('heatmap');
-    var myChart = echarts.init(chartDom);
-    window.onresize = function() {
-        myChart.resize();
-    };
-    var option;
-
-    
-    
-    
-    
-    
-    
-    var dataMap = new Map();
-    
-    var key = "2025-01-20";
-    var value = dataMap.get(key);
-    var wordCount =  13 ;
-    var link = "/p/flutter%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/";
-    var title = "Flutter环境配置问题";
-
-    
-    if (value == null) {
-        dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-        value.push({wordCount, link, title});
-    }
-    var key = "2025-01-16";
-    var value = dataMap.get(key);
-    var wordCount =  63 ;
-    var link = "/p/%E5%A4%9A%E6%AC%A1%E5%85%A5%E5%9D%91vue3%E5%90%8E%E7%9A%84%E8%B8%A9%E5%9D%91%E6%97%A5%E5%BF%97/";
-    var title = "多次入坑Vue3后的踩坑日志";
-
-    
-    if (value == null) {
-        dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-        value.push({wordCount, link, title});
-    }
-    var key = "2024-01-05";
-    var value = dataMap.get(key);
-    var wordCount =  32 ;
-    var link = "/p/%E4%BB%8Eapplication.properties%E4%B8%AD%E4%BD%BF%E7%94%A8@value%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE%E4%B8%BAnull/";
-    var title = "从application.properties中使用@Value读取数据为null";
-
-    
-    if (value == null) {
-        dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-        value.push({wordCount, link, title});
-    }
-    var key = "0001-01-01";
-    var value = dataMap.get(key);
-    var wordCount =  32 ;
-    var link = "/p/%E5%9C%A8unraid%E7%9A%84%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2dify%E7%9A%84%E7%BB%8F%E5%8E%86/";
-    var title = "在Unraid的环境下部署Dify的经历";
-
-    
-    if (value == null) {
-        dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-        value.push({wordCount, link, title});
-    }
-    var key = "0001-01-01";
-    var value = dataMap.get(key);
-    var wordCount =  17 ;
-    var link = "/p/%E5%9C%A8unraid%E7%9A%84%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2ragflow%E8%B8%A9%E5%9D%91%E7%82%B9/";
-    var title = "在Unraid的环境下部署RAGFlow踩坑点";
-
-    
-    if (value == null) {
-        dataMap.set(key, [{wordCount, link, title}]);
-    } else {
-        value.push({wordCount, link, title});
-    }var data = [];
-    
-    for (const [key, value] of dataMap.entries()) {
-        var sum = 0;
-        for (const v of value) {
-            sum += v.wordCount;
-        }
-        data.push([key, (sum / 1000).toFixed(1)]);
-    }
-
-    var startDate = new Date();
-    var year_Mill = startDate.setFullYear((startDate.getFullYear() - 1));
-    var startDate = +new Date(year_Mill);
-    var endDate = +new Date();
-
-    var dayTime = 3600 * 24 * 1000;
-    startDate = echarts.format.formatTime('yyyy-MM-dd', startDate);
-    endDate = echarts.format.formatTime('yyyy-MM-dd', endDate);
-
-    
-    function heatmap_width(months){
-        var startDate = new Date();
-        var mill = startDate.setMonth((startDate.getMonth() - months));
-        var endDate = +new Date();
-        startDate = +new Date(mill);
-
-        endDate = echarts.format.formatTime('yyyy-MM-dd', endDate);
-        startDate = echarts.format.formatTime('yyyy-MM-dd', startDate);
-
-        var showmonth = [];
-        showmonth.push([
-            startDate,
-            endDate
-        ]);
-        return showmonth
-    };
-
-    function getRangeArr() {
-        const windowWidth = window.innerWidth;
-        if (windowWidth >= 600) {
-            return heatmap_width(12);
-        } else if (windowWidth >= 400) {
-            return heatmap_width(9);
-        } else {
-            return heatmap_width(6);
-        }
-    }
-
-    option = {
-        title: {
-            top: 0,
-            left: 'center',
-            text: '热力图'
-        },
-        tooltip: {
-            hideDelay: 1000,
-            enterable: true,
-            formatter: function (p) {
-                const date = p.data[0];
-                const posts = dataMap.get(date);
-                var content = `${date}`;
-                for (const [i, post] of posts.entries()) {
-                    content += "<br>";
-                    var link = post.link;
-                    var title = post.title;
-                    var wordCount = (post.wordCount / 1000).toFixed(1);
-                    content += `<a href="${link}" target="_blank">${title} | ${wordCount} k</a>`
-                }
-                return content;
-            }
-        },
-        visualMap: {
-            min: 0,
-            max: 10,
-            type: 'piecewise',
-            orient: 'horizontal',
-            left: 'center',
-            top: 30,
-
-            inRange: {
-                
-                color: ['#7aa8744c', '#7AA874' ]
-            },
-            splitNumber: 4,
-            text: ['千字', ''],
-            showLabel: true,
-            itemGap: 20,
-        },
-        calendar: {
-            top: 80,
-            left: 20,
-            right: 4,
-            cellSize: ['auto', 13],
-            range: getRangeArr(),
-            itemStyle: {
-                color: '#F1F1F1',
-                borderWidth: 1.5,
-                borderColor: '#fff',
-            },
-            yearLabel: { show: false },
-            
-            splitLine: {
-                lineStyle: {
-                    color: 'rgba(0, 0, 0, 0.0)',
-                    
-                    
-                    
-                    
-                }
-            }
-        },
-        series: {
-            type: 'heatmap',
-            coordinateSystem: 'calendar',
-            data: data,
-        }
-    };
-    myChart.setOption(option);
-    myChart.on('click', function(params) {
-        if (params.componentType === 'series') {
-            
-            const post = dataMap.get(params.data[0])[0];
-            const link = window.location.origin + post.link;
-            window.open(link, '_blank').focus();
-        }
-    });
-</script>
-
+    <p><em>前言：本篇文章只讲述部署的经历，并没有找到问题的所在</em></p>
+<h1 id="docker-compose不走软路由代理">docker compose不走软路由代理
+</h1><p>单独使用docker pull，走软路由代理；使用docker compose并创建了一个新的docker网后就不走代理（非host的docker容器也是一样，可能要进行设置）</p>
+<h1 id="dify-api启动时报错">dify-api启动时报错
+</h1><p>dify-api启动时报错，读取数据库出错，继续追踪，发现redis启动失败并一直重启（不知道是触发什么bug了），删除容器、本地数据后均无效（数据挂载到flash的原因？），重新下载镜像后成功启动</p>
+<h1 id="环境变量配置">环境变量配置
+</h1><p>最主要修改的是以下几项配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-env" data-lang="env"><span class="line"><span class="cl">SECRET_KEY  <span class="c1"># 密钥必须要改的</span>
+</span></span><span class="line"><span class="cl">EXPOSE_NGINX_PORT  <span class="c1"># 对外暴露的端口EXPOSE_NGINX_SSL_PORT同理</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="偶遇神秘问题拼尽全力无法战胜">偶遇神秘问题，拼尽全力无法战胜
+</h1><h2 id="情景解决思路回顾">情景、解决思路回顾
+</h2><ol>
+<li>内网下打开网站，显示空白，手动进入<code>/install</code>页面</li>
+<li>注册完毕，直接跳转到<code>/apps</code>页面</li>
+<li>页面无法显示，使用F12发现<strong>401报错</strong></li>
+<li>使用无痕模式、Edge-dev登录没有出现问题</li>
+<li>对比请求发现登录成功时没有设置cookie</li>
+<li>失败的浏览器在删除cookie后功能正常</li>
+</ol>
+<h2 id="cookie是哪来的">cookie是哪来的
+</h2><p>考虑到内网端口曾经被使用过，所以可能有残留着的cookie。但是在同样情况下，使用内网穿透和虚拟局域网同样产生了cookie，导致登录不了。因此该可能排除。也有可能是nginx启动不充分产生的问题（不知道，我猜的）</p>
+<h2 id="总结">总结
+</h2><p>真是酣畅淋漓的赤石啊！
+感觉像是侦探查案，凶手没找到，人质自己跑回来了&hellip;&hellip;
+总之，希腊奶~</p>
 
 </section>
 
 
     <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/dify/">Dify</a>
+        
+            <a href="/tags/unraid/">Unraid</a>
+        
+    </section>
+
 
     <section class="article-lastmod">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -470,7 +332,7 @@
 
 
         <span>
-            最后更新于 2025, Jan 26, 23:00
+            最后更新于 2025, Mar 09, 00:11
         </span>
     </section></footer>
 

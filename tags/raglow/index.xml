@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Raglow on Over04的站点</title>
+        <link>https://over04.github.io/tags/raglow/</link>
+        <description>Recent content in Raglow on Over04的站点</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>Over04</copyright><atom:link href="https://over04.github.io/tags/raglow/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>在Unraid的环境下部署RAGFlow踩坑点</title>
+        <link>https://over04.github.io/p/%E5%9C%A8unraid%E7%9A%84%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2ragflow%E8%B8%A9%E5%9D%91%E7%82%B9/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://over04.github.io/p/%E5%9C%A8unraid%E7%9A%84%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2ragflow%E8%B8%A9%E5%9D%91%E7%82%B9/</guid>
+        <description>&lt;h1 id=&#34;docker网络问题&#34;&gt;docker网络问题
+&lt;/h1&gt;&lt;p&gt;在docker compose下不知道为什么就是不走软路由代理（为什么，能解释一下吗）&lt;/p&gt;
+&lt;h1 id=&#34;key-expected-bytes-or-bytearray-but-got-nonetype&#34;&gt;&amp;ldquo;key: expected bytes or bytearray, but got &amp;lsquo;NoneType&amp;rsquo;&amp;rdquo;
+&lt;/h1&gt;&lt;p&gt;使用edge-dev就可以了(可能跟cookie有关)&lt;/p&gt;
+&lt;h1 id=&#34;unraid-docker-compose插件&#34;&gt;Unraid Docker Compose插件
+&lt;/h1&gt;&lt;p&gt;使用docker compose插件后，直接挂载了80:80,443:443，使用命令启动后无问题&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

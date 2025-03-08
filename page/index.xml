@@ -81,6 +81,30 @@
         dataMap.set(key, [{wordCount, link, title}]);
     } else {
         value.push({wordCount, link, title});
+    }
+    var key = &#34;0001-01-01&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  32 ;
+    var link = &#34;/p/%E5%9C%A8unraid%E7%9A%84%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2dify%E7%9A%84%E7%BB%8F%E5%8E%86/&#34;;
+    var title = &#34;在Unraid的环境下部署Dify的经历&#34;;
+
+    
+    if (value == null) {
+        dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+        value.push({wordCount, link, title});
+    }
+    var key = &#34;0001-01-01&#34;;
+    var value = dataMap.get(key);
+    var wordCount =  17 ;
+    var link = &#34;/p/%E5%9C%A8unraid%E7%9A%84%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%83%A8%E7%BD%B2ragflow%E8%B8%A9%E5%9D%91%E7%82%B9/&#34;;
+    var title = &#34;在Unraid的环境下部署RAGFlow踩坑点&#34;;
+
+    
+    if (value == null) {
+        dataMap.set(key, [{wordCount, link, title}]);
+    } else {
+        value.push({wordCount, link, title});
     }var data = [];
     
     for (const [key, value] of dataMap.entries()) {
