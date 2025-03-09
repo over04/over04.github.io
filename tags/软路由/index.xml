@@ -6,10 +6,11 @@
         <description>Recent content in 软路由 on Over04的站点</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>Over04</copyright><atom:link href="https://over04.github.io/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/index.xml" rel="self" type="application/rss+xml" /><item>
+        <copyright>Over04</copyright>
+        <lastBuildDate>Sun, 09 Mar 2025 15:26:31 +0800</lastBuildDate><atom:link href="https://over04.github.io/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Unraid单臂软路由导致docker bridge无网络</title>
         <link>https://over04.github.io/p/unraid%E5%8D%95%E8%87%82%E8%BD%AF%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%87%B4docker-bridge%E6%97%A0%E7%BD%91%E7%BB%9C/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <pubDate>Sun, 09 Mar 2025 00:00:00 +0000</pubDate>
         
         <guid>https://over04.github.io/p/unraid%E5%8D%95%E8%87%82%E8%BD%AF%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%87%B4docker-bridge%E6%97%A0%E7%BD%91%E7%BB%9C/</guid>
         <description>&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://forums.unraid.net/topic/123006-%e4%bd%bf%e7%94%a8%e8%99%9a%e6%8b%9f%e6%9c%baopenwrt%e4%bd%9c%e4%b8%ba%e8%b7%af%e7%94%b1%ef%bc%8cdocker%e4%b8%8d%e8%83%bd%e4%b8%8a%e7%bd%91/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
